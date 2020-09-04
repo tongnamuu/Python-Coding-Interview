@@ -16,16 +16,19 @@ class Solution:
             if i > 0 and nums[i] == prev1:
                 continue
             prev1 = nums[i]
-            for j in range(i+1,len(nums)):
+            for j in range(i+1, len(nums)):
                 target = -nums[i]-nums[j]
                 if target in nums_dict:
                     for k in nums_dict[target]:
                         if k != i and k != j:
                             ans.append(tuple(sorted([nums[i], nums[j], -nums[i]-nums[j]])))
                             break
-        return list(set(ans))
+        ans = list(set(ans))
+        for idx in range(len(ans)):
+            ans[idx] = list(ans[idx])
+        return ans
 
 
-input_list = nums = [-1,0,1,2,-1,-4]
+input_list = [-1, 0, 1, 2, -1, -4]
 solution = Solution().threeSum(input_list)
 print(solution)
